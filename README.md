@@ -1,4 +1,4 @@
 ## Make Change Project
 
-### Week One homework for Skill Distillery
+### Week One homework for Skill Distillery.
 
