@@ -11,7 +11,6 @@ public class MakeChangeObject {
 		System.out.println("Hello! How much is your purchase?");
 		double price;
 		price = scanner.nextDouble();
-//		price = 2.26;
 		System.out.println("My purchase costs $" + price + ".");
 		double change = 0.0;
 		int escape = 1;
@@ -31,11 +30,14 @@ public class MakeChangeObject {
 		System.out.println("I am paying $" + payment + ".");
 		change = payment - price;
 		if (change == 0) {
-			System.out.print("Thank you! ");
+			System.out.print("Thank you for the exact change! ");
 			escape = intChange;
 		}
 		else if (change < 0) {
 			System.out.println("Sorry, you owe more than that.");
+		}
+		else if (change >= 100) {
+			System.out.println("Sorry, we don't make change for $100 or more.");
 		}
 		else {
 		System.out.println("Thank you! Your change is $" + change + ".");
@@ -57,10 +59,10 @@ public class MakeChangeObject {
 		intChange = intChange - 5*nickles;
 		pennies = intChange / 1;
 		intChange = intChange - 1*pennies;
-		System.out.println("(The clerk hands you " + isZero(twenties) + singular(twenties, "twenties")  + isZero(tens) + singular(tens, "tens") + isZero(fives)
-													+ singular(tens, "fives") + isZero(ones) + singular(ones, "one dollar bills") + isZero(quarters)
-													+ singular(quarters, "quarters") + isZero(dimes) + singular(dimes, "dimes") + isZero(nickles)
-													+ singular(nickles, "nickles") + isZero(pennies) + singular(pennies, "pennies") + ")");
+		System.out.println("(The clerk hands you " + isZero(twenties) + singular(twenties, "twenties,")  + isZero(tens) + singular(tens, "tens,") + isZero(fives)
+													+ singular(fives, "fives,") + isZero(ones) + singular(ones, "one dollar bills,") + isZero(quarters)
+													+ singular(quarters, "quarters,") + isZero(dimes) + singular(dimes, "dimes,") + isZero(nickles)
+													+ singular(nickles, "nickles,") + isZero(pennies) + singular(pennies, "pennies,") + ")");
 		escape = intChange;
 		}
 		}
@@ -70,19 +72,19 @@ public class MakeChangeObject {
 		
 		if (inputNum == 1) {
 			switch (inputDenom){
-			case "twenties": output = " twenty ";
+			case "twenties,": output = " twenty, ";
 			break;
-			case "tens": output = " ten ";
+			case "tens,": output = " ten, ";
 			break;
-			case "fives": output = " five ";
+			case "fives,": output = " five, ";
 			break;
-			case "one dollar bills": output = " one dollar bill ";
+			case "one dollar bills,": output = " one dollar bill, ";
 			break;
-			case "quarters": output = " quarter ";
+			case "quarters,": output = " quarter, ";
 			break;
-			case "dimes": output = " dime ";
+			case "dimes,": output = " dime, ";
 			break;
-			case "nickles": output = " nickle ";
+			case "nickles,": output = " nickle, ";
 			break;
 			case "pennies": output = " penny ";
 			}
