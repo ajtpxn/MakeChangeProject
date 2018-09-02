@@ -14,7 +14,7 @@ public class MakeChangeMainApp {
 			
 			shopping.change();
 			
-			String input = "N";
+			String input = "error";
 			Scanner scanner = new Scanner(System.in);
 			System.out.print("Would you like to make another purchase? (Y)es: ");
 			input = scanner.nextLine();

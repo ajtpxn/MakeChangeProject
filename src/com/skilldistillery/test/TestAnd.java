@@ -47,6 +47,7 @@ public class TestAnd {
 				change = change * 100;
 				System.out.print("( The clerk hands you ");
 				intChange = (int)change;
+				
 				int last = intChange;
 				
 				twenties = intChange / 2000;
