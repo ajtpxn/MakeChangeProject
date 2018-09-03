@@ -3,131 +3,207 @@ package com.skilldistillery.makechange;
 import java.util.Scanner;
 
 public class MakeChangeObject {
-	
-	
+
 	public void change() {
-		
+
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Hello! How much is your purchase?");
-		double price;
+		double price = 0.0;
 		price = scanner.nextDouble();
 		System.out.println("My purchase costs $" + price + ".");
 		double change = 0.0;
-		int escape = 1;
-		int twenties = 0;
-		int tens = 0;
-		int fives = 0;
-		int ones=0;
-		int quarters=0;
-		int dimes=0;
-		int nickles=0;
-		int pennies=0;
-		int intChange=0;
-		while (escape != 0) {
-			
-		System.out.println("How much are you paying?");
-		double payment = scanner.nextDouble();
-		System.out.println("I am paying $" + payment + ".");
-		change = payment - price;
-		if (change == 0) {
-			System.out.print("Thank you for the exact change! ");
-			escape = intChange;
-		}
-		else if (change < 0) {
-			System.out.println("Sorry, you owe more than that.");
-		}
-		else if (change >= 100) {
-			System.out.println("Sorry, we don't make change for $100 or more.");
-		}
-		else {
-		System.out.println("Thank you! Your change is $" + change + ".");
-		change = change * 100;
-		intChange = (int)change;
-		twenties = intChange / 2000;
-		intChange = intChange - 2000*twenties;
-		tens = intChange / 1000;
-		intChange = intChange - 1000*tens;
-		fives = intChange / 500;
-		intChange = intChange - 500*fives;
-		ones = intChange / 100;
-		intChange = intChange - 100*ones;
-		quarters = intChange / 25;
-		intChange = intChange - 25*quarters;
-		dimes = intChange / 10;
-		intChange = intChange - 10*dimes;
-		nickles = intChange / 5;
-		intChange = intChange - 5*nickles;
-		pennies = intChange / 1;
-		intChange = intChange - 1*pennies;
-		System.out.println("(The clerk hands you " + isZero(twenties) + singular(twenties, "twenties,")  + isZero(tens) + singular(tens, "tens,") + isZero(fives)
-													+ singular(fives, "fives,") + isZero(ones) + singular(ones, "one dollar bills,") + isZero(quarters)
-													+ singular(quarters, "quarters,") + isZero(dimes) + singular(dimes, "dimes,") + isZero(nickles)
-													+ singular(nickles, "nickles,") + isZero(pennies) + singular(pennies, "pennies,") + ")");
-		escape = intChange;
-		}
-		}
-	}
-	public String singular(int inputNum, String inputDenom) {
-		String output = "error";
-		
-		if (inputNum == 1) {
-			switch (inputDenom){
-			case "twenties,": output = " twenty, ";
-			break;
-			case "tens,": output = " ten, ";
-			break;
-			case "fives,": output = " five, ";
-			break;
-			case "one dollar bills,": output = " one dollar bill, ";
-			break;
-			case "quarters,": output = " quarter, ";
-			break;
-			case "dimes,": output = " dime, ";
-			break;
-			case "nickles,": output = " nickle, ";
-			break;
-			case "pennies": output = " penny ";
+		int intChange = 0;
+		double payment = 0.0;
+		int dVal = 0;
+		int dNum = 1;
+		boolean last = false;
+		int denom = 0;
+
+		boolean stay = true;
+		while (stay) {
+
+			System.out.println("How much are you paying?");
+			payment = scanner.nextDouble();
+			System.out.println("I am paying $" + payment + ".");
+			change = payment - price;
+			if (change == 0) {
+				System.out.print("Thank you for the exact change! ");
+				stay = false;
+			} else if (change < 0) {
+				System.out.println("Sorry, you owe more than that.");
+			} else if (change >= 100) {
+				System.out.println("Sorry, we don't make change for $100 or more.");
+			} else {
+				System.out.println("Thank you! Your change is $" + change + ".");
+				change = change * 100;
+				System.out.print("( The clerk hands you ");
+				intChange = (int) change;
+				stay = false;
+
+				while (dNum <= 8) {
+					dVal = setDenomValue(dNum);
+					denom = intChange / dVal;
+					last = (intChange - dVal * denom == 0) && (dNum > 1) ;
+					System.out.print(printAnd(last && false));
+					System.out.print(isZero(denom));
+					System.out.print(singular(denom, dVal));
+					intChange = intChange - dVal * denom;
+					System.out.print(printComma(last || denom == 0 || dNum == 1));
+					dNum = dNum + 1;
+
+				}
+				System.out.println(". )");
 			}
 		}
-		else if (inputNum == 0) {
+	}
+
+	public static String singular(int inputNum, int inputDenom) {
+		String output = "error";
+		if (inputNum == 1) {
+			switch (inputDenom) {
+			case 2000:
+				output = " twenty";
+				break;
+			case 1000:
+				output = " ten";
+				break;
+			case 500:
+				output = " five";
+				break;
+			case 100:
+				output = " one dollar bill";
+				break;
+			case 25:
+				output = " quarter";
+				break;
+			case 10:
+				output = " dime";
+				break;
+			case 5:
+				output = " nickel";
+				break;
+			case 1:
+				output = " penny";
+			}
+		} else if (inputNum > 1) {
+			switch (inputDenom) {
+			case 2000:
+				output = " twenties";
+				break;
+			case 1000:
+				output = " tens";
+				break;
+			case 500:
+				output = " fives";
+				break;
+			case 100:
+				output = " one dollar bills";
+				break;
+			case 25:
+				output = " quarters";
+				break;
+			case 10:
+				output = " dimes";
+				break;
+			case 5:
+				output = " nickels";
+				break;
+			case 1:
+				output = " pennies";
+			}
+		} else {
 			output = "";
 		}
-		else {
-			output = (" " + inputDenom + " ");
+		return output;
+	}
+
+	public static String isZero(int inputNum) {
+		String output = "error";
+		switch (inputNum) {
+		case 0:
+			output = "";
+			break;
+		case 1:
+			output = "1";
+			break;
+		case 2:
+			output = "2";
+			break;
+		case 3:
+			output = "3";
+			break;
+		case 4:
+			output = "4";
+			break;
+		case 5:
+			output = "5";
+			break;
+		case 6:
+			output = "6";
+			break;
+		case 7:
+			output = "7";
+			break;
+		case 8:
+			output = "8";
+			break;
+		case 9:
+			output = "9";
 		}
-		
-		
 		return output;
-		
 	}
-	public String isZero(int inputNum) {
-		String output = "";
-		
-		
-			switch (inputNum) {
-			case 0: output = "";
+
+	public static int setDenomValue(int denomNumber) {
+		int output = 0;
+
+		switch (denomNumber) {
+
+		case 1:
+			output = 2000;
 			break;
-			case 1: output = "1";
+		case 2:
+			output = 1000;
 			break;
-			case 2: output = "2";
+		case 3:
+			output = 500;
 			break;
-			case 3: output = "3";
+		case 4:
+			output = 100;
 			break;
-			case 4: output = "4";
+		case 5:
+			output = 25;
 			break;
-			case 5: output = "5";
+		case 6:
+			output = 10;
 			break;
-			case 6: output = "6";
+		case 7:
+			output = 5;
 			break;
-			case 7: output = "7";
-			break;
-			case 8: output = "8";
-			break;
-			case 9: output = "9";
-			}
-		
-		
+		case 8:
+			output = 1;
+		}
 		return output;
-		
 	}
+
+	public static String printAnd(boolean doPrint) {
+		String output = "error";
+		if (doPrint) {
+			output = "and ";
+		} else {
+			output = "";
+		}
+		return output;
+	}
+
+	public static String printComma(boolean doNotPrint) {
+		String output = "error";
+		if (doNotPrint) {
+			output = "";
+		} else {
+			output = ", ";
+		}
+
+		return output;
+	}
+
 }

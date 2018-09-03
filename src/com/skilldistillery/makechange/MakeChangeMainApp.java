@@ -6,33 +6,31 @@ public class MakeChangeMainApp {
 
 	public static void main(String[] args) {
 		
+		//New purchase loop
+
 		boolean quit = false;
-		
+
 		while (quit != true) {
 			
-			MakeChangeObject shopping = new MakeChangeObject();
-			
+
+			MakeChangeSimpleObject shopping = new MakeChangeSimpleObject();
 			shopping.change();
-			
+
 			String input = "error";
 			Scanner scanner = new Scanner(System.in);
 			System.out.print("Would you like to make another purchase? (Y)es: ");
 			input = scanner.nextLine();
 			System.out.println();
-			
-			if ( input.equals("Y") | input.equals("y") ) {
+
+			if (input.equals("Y") | input.equals("y")) {
 				System.out.println("New purchase: ");
-			}
-			else {
+			} else {
 				quit = true;
 				System.out.println("Good bye! Have a good day!");
 			}
-			
-			
-			
+
 		}
-		
-		
+
 	}
 
 }
