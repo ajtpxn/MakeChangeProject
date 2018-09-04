@@ -18,15 +18,18 @@ public class MakeChangeSimpleObject {
 
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Hello! How much is your purchase?");
+		NumberFormat formatter = NumberFormat.getCurrencyInstance();
 		price = scanner.nextDouble();
-		System.out.println("My purchase costs $" + price + ".");
+		String formattedPrice = formatter.format(price);
+		System.out.println("Your purchase costs " + formattedPrice + ".");
 
 		// Payment loop
 		while (stay) {
 
 			System.out.println("How much are you paying?");
 			payment = scanner.nextDouble();
-			System.out.println("I am paying $" + payment + ".");
+			String formattedPayment = formatter.format(payment);
+			System.out.println("You are paying " + formattedPayment + ".");
 			change = payment - price;
 			if (change == 0) {
 				System.out.print("Thank you for the exact change! ");
@@ -38,7 +41,6 @@ public class MakeChangeSimpleObject {
 			} else {
 				change = change * 100;
 				intChange = (int)(change + 0.005);
-				NumberFormat formatter = NumberFormat.getCurrencyInstance();
 				String moneyString = formatter.format(change/100);
 				System.out.println("Thank you! Your change is " + moneyString + ". ");
 				System.out.print("( The clerk hands you ");
