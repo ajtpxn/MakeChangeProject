@@ -1,5 +1,6 @@
 package com.skilldistillery.makechange;
 
+import java.text.NumberFormat;
 import java.util.Scanner;
 
 public class MakeChangeSimpleObject {
@@ -35,10 +36,13 @@ public class MakeChangeSimpleObject {
 			} else if (change >= 100) {
 				System.out.println("Sorry, we don't make change for $100 or more.");
 			} else {
-				System.out.println("Thank you! Your change is $" + change + ".");
 				change = change * 100;
+				intChange = (int)(change + 0.005);
+				System.out.println("change/100: " + change);
+				NumberFormat formatter = NumberFormat.getCurrencyInstance();
+				String moneyString = formatter.format(change/100);
+				System.out.println("Thank you! Your change is " + moneyString + ". ");
 				System.out.print("( The clerk hands you ");
-				intChange = (int) change;
 				stay = false;
 
 				while (dNum <= 8) {

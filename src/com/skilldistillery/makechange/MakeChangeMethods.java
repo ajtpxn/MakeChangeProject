@@ -1,5 +1,7 @@
 package com.skilldistillery.makechange;
 
+
+
 public class MakeChangeMethods {
 
 	public static String singularPlural(int inputNum, int inputDenom) {
@@ -129,5 +131,9 @@ public class MakeChangeMethods {
 		}
 		return output;
 	}
+	
 
+    
 }
+
+

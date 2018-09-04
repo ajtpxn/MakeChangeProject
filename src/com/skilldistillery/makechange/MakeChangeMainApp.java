@@ -5,13 +5,12 @@ import java.util.Scanner;
 public class MakeChangeMainApp {
 
 	public static void main(String[] args) {
-		
-		//New purchase loop
+
+		// New purchase loop
 
 		boolean quit = false;
 
 		while (quit != true) {
-			
 
 			MakeChangeSimpleObject shopping = new MakeChangeSimpleObject();
 			shopping.change();
