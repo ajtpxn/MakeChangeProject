@@ -38,7 +38,6 @@ public class MakeChangeSimpleObject {
 			} else {
 				change = change * 100;
 				intChange = (int)(change + 0.005);
-				System.out.println("change/100: " + change);
 				NumberFormat formatter = NumberFormat.getCurrencyInstance();
 				String moneyString = formatter.format(change/100);
 				System.out.println("Thank you! Your change is " + moneyString + ". ");
