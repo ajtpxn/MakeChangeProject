@@ -27,7 +27,6 @@ public class MakeChangeMainApp {
 				quit = true;
 				System.out.println("Good bye! Have a good day!");
 			}
-
 		}
 
 	}

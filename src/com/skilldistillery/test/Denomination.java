@@ -2,24 +2,16 @@ package com.skilldistillery.test;
 
 public class Denomination {
 	
-	public int amount;
-	
-	public int value;
-	
-	public boolean last;
-	
-	public boolean isZero;
-	
-	public int number;
-	
-	public void printDenom() {
-		System.out.println();
+	public Denomination(String x, String y, int z) { //Constructor
+		singular = x;
+		plural = y;
+		value = z;
 	}
 	
-	public void printAnd() {
-		if (last) {
-			System.out.println("and ");
-		}
-	}
+	public String singular; //twenty through penny
+	
+	public String plural;  //twenties through pennies
+	
+	public int value; //2000 through 1
 	
 }
